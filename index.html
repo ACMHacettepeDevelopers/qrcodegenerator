@@ -1,4 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+<body>
+    
+
 <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
 
 <div class="form">
   <h1>QR Code Oluşturma</h1>
@@ -12,8 +25,6 @@
 
   <div id="qrcode-container">
     <div id="qrcode" class="qrcode"></div>
-    <h4>With some styles</h4>
-    <div id="qrcode-2" class="qrcode"></div>
   </div>
 
   <script type="text/javascript">
@@ -24,21 +35,13 @@
         let qrcodeContainer = document.getElementById("qrcode");
         qrcodeContainer.innerHTML = "";
         new QRCode(qrcodeContainer, name+":"+mail);
-        /*With some styles*/
-        let qrcodeContainer2 = document.getElementById("qrcode-2");
-        qrcodeContainer2.innerHTML = "";
-        new QRCode(qrcodeContainer2, {
-          text: name+":"+mail,
-          width: 128,
-          height: 128,
-          colorDark: "#5868bf",
-          colorLight: "#ffffff",
-          correctLevel: QRCode.CorrectLevel.H
-        });
         document.getElementById("qrcode-container").style.display = "block";
       } else {
-        alert("Please enter a valid URL");
+        alert("Please enter a valid mail address");
       }
     }
   </script>
 </div>
+
+</body>
+</html>
