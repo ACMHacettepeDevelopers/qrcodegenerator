@@ -31,13 +31,13 @@
     function generateQRCode() {
       let name = document.getElementById("name").value;
       let mail = document.getElementById("mail").value;
-      if (mail) {
+      if (mail&&name) {
         let qrcodeContainer = document.getElementById("qrcode");
         qrcodeContainer.innerHTML = "";
-        new QRCode(qrcodeContainer, name+":"+mail);
+        new QRCode(qrcodeContainer, name+"~"+mail);
         document.getElementById("qrcode-container").style.display = "block";
       } else {
-        alert("Please enter a valid mail address");
+        alert("Please enter a valid name and mail address.");
       }
     }
   </script>
