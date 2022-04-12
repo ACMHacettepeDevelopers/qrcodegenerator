@@ -14,8 +14,8 @@
     margin: -16px -16px 16px -16px;
     font-size:  25px;
   }
-  .form input[type="text"],
-  .form input[type="url"] {
+  .form input[type="name"],
+  .form input[type="mail"] {
     box-sizing: border-box;
     width: 100%;
     background: #fff;
@@ -24,8 +24,8 @@
     padding: 3%;
     color: #555;
   }
-  .form input[type="text"]:focus,
-  .form input[type="url"]:focus {
+  .form input[type="name"]:focus,
+  .form input[type="mail"]:focus {
     box-shadow: 0 0 5px #5868bf;
     padding: 3%;
     border: 1px solid #5868bf;
