@@ -55,8 +55,8 @@ function translate(text) {
 }
     
     function generateQRCode() {
-      let name = translate(document.getElementById("name").value);
-      let mail = translate(document.getElementById("mail").value);
+      let name =document.getElementById("name").value;
+      let mail = document.getElementById("mail").value;
       if (mail&&name) {
         let qrcodeContainer = document.getElementById("qrcode");
         qrcodeContainer.innerHTML = "";
