@@ -1,73 +1,88 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>SMS'24 QR Code Oluşturucu</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-</head>
-<body>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  </head>
+  <body>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 
-<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <div class="form">
+      <h1>QR Code Oluşturma</h1>
+      <form>
+        <input
+          type="name"
+          id="name"
+          name="website"
+          placeholder="Ad Soyad"
+          required
+        />
+        <input
+          type="mail"
+          id="mail"
+          name="website"
+          placeholder="Mail"
+          required
+        />
+        <input
+          type="phone"
+          id="phone"
+          name="website"
+          placeholder="Cep Telefonu"
+          required
+        />
+        <button type="button" onclick="generateQRCode()">
+          QR Code Oluştur
+        </button>
+      </form>
 
+      <div id="qrcode-container">
+        <div id="qrcode" class="qrcode"></div>
+      </div>
 
-<div class="form">
-  <h1>QR Code Oluşturma</h1>
-  <form>
-    <input type="name" id="name" name="website" placeholder="Ad Soyad" required />
-    <input type="mail" id="mail" name="website" placeholder="Mail" required />
-    <button type="button" onclick="generateQRCode()">
-      QR Code Oluştur
-    </button>
-  </form>
+      <script type="text/javascript">
+        function translate(text) {
+          var trMap = {
+            ç: "c",
+            ğ: "g",
+            ş: "s",
+            ü: "u",
+            ı: "i",
+            ö: "o",
+            Ç: "C",
+            Ğ: "G",
+            Ş: "S",
+            Ü: "U",
+            İ: "I",
+            Ö: "O",
+          };
+          for (var key in trMap) {
+            text = text.replace(new RegExp("[" + key + "]", "g"), trMap[key]);
+          }
+          return text
+            .replace(/[^-a-zA-Z0-9\s]+/gi, "") // remove non-alphanumeric chars
+            .replace(/\s/gi, "-") // convert spaces to dashes
+            .replace(/[-]+/gi, "-") // trim repeated dashes
+            .toLowerCase();
+        }
 
-  <div id="qrcode-container">
-    <div id="qrcode" class="qrcode"></div>
-  </div>
-
-  <script type="text/javascript">
-
-function translate(text) {
-    var trMap = {
-        'ç':'c',
-        'ğ':'g',
-        'ş':'s',
-        'ü':'u',
-        'ı':'i',
-        'ö':'o',
-        'Ç':'C',
-        'Ğ':'G',
-        'Ş':'S',
-        'Ü':'U',
-        'İ':'I',
-        'Ö':'O'
-    };
-    for(var key in trMap) {
-        text = text.replace(new RegExp('['+key+']','g'), trMap[key]);
-    }
-    return  text.replace(/[^-a-zA-Z0-9\s]+/ig, '') // remove non-alphanumeric chars
-                .replace(/\s/gi, "-") // convert spaces to dashes
-                .replace(/[-]+/gi, "-") // trim repeated dashes
-                .toLowerCase();
-
-}
-    
-    function generateQRCode() {
-      let name =translate(document.getElementById("name").value);
-      let mail = document.getElementById("mail").value;
-      if (mail&&name) {
-        let qrcodeContainer = document.getElementById("qrcode");
-        qrcodeContainer.innerHTML = "";
-        new QRCode(qrcodeContainer, name+"~"+mail);
-        document.getElementById("qrcode-container").style.display = "block";
-      } else {
-        alert("Please enter a valid name and mail address.");
-      }
-    }
-  </script>
-</div>
-
-</body>
+        function generateQRCode() {
+          let name = translate(document.getElementById("name").value);
+          let phone = document.getElementById("phone").value;
+          let mail = document.getElementById("mail").value;
+          if (mail && name && phone) {
+            let qrcodeContainer = document.getElementById("qrcode");
+            qrcodeContainer.innerHTML = "";
+            new QRCode(qrcodeContainer, name + "~" + mail + "~" + phone);
+            document.getElementById("qrcode-container").style.display = "block";
+          } else {
+            alert("Please enter a valid name, mail address and phone number.");
+          }
+        }
+      </script>
+    </div>
+  </body>
 </html>
