@@ -83,6 +83,7 @@ body {
 
 #qrcode-container {
   display: none;
+  margin: 8%
 }
 
 .qrcode {
